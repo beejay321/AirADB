@@ -1,4 +1,6 @@
 import React from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { CiGlobe } from "react-icons/ci";
 
 function Navbar() {
   return (
@@ -9,14 +11,27 @@ function Navbar() {
           <span>Logo here</span>
         </div>
         <div className="nav-tabs">
-          <span>Homes </span>
+          <div>
+            <img src="" alt="" />
+            <span>Homes </span>
+          </div>
           <span>Experiences</span>
           <span>Services</span>
         </div>
         <div className="nav-actions">
-          <span>Add listing</span>
-          <button className="nav-btn "></button>
-          <button className="nav-btn "></button>
+          <button className="nav-add-btn">
+            <span>Add listing</span>
+          </button>
+          <button className="nav-icon-btn ">
+            <span>
+              <CiGlobe />
+            </span>
+          </button>
+          <button className="nav-icon-btn">
+            <span>
+              <GiHamburgerMenu />
+            </span>
+          </button>
         </div>
       </div>
     </div>
