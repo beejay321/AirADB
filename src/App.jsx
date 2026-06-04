@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router";
 import Homepage from "./pages/Homepage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer.jsx";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar.jsx";
 import "./App.css";
 function App() {
   return (
@@ -14,12 +14,13 @@ function App() {
     }}>
 
       <main style={{ flex: 1 }}>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-      
+
       <Footer />
     </div>  
   );
