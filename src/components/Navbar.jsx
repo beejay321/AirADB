@@ -1,13 +1,15 @@
 import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
+import websiteLogo from '../assets/website-logo.png';
+
 
 function Navbar() {
   return (
     <div>
       <div className="nav-div">
         <div className="logo">
-          {/* <img src="../assets/hero.png" alt="logo" /> */}
+            <img src={websiteLogo} alt="Website Logo" className="website-logo" />
           <span>Logo here</span>
         </div>
         <div className="nav-tabs">
