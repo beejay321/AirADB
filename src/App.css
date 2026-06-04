@@ -2,13 +2,20 @@ body {
   color: rgb(93, 93, 93);
 }
 /* Navbar */
+.nav-bar {
+  padding-bottom: 10px;
+  background-color: white;
+}
+.website-logo {
+  height: 60px;
+}
 .nav-div {
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px;
-  background-color: white;
+  padding: 8px 24px;
+  /* background-color: white; */
 }
 .nav-tabs {
   display: flex;

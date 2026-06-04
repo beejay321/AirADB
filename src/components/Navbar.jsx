@@ -1,18 +1,16 @@
 import React from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
-import websiteLogo from '../assets/website-logo.png';
-import SearchBar from './SearchBar';
-
+import websiteLogo from "../assets/website-logo.png";
+import SearchBar from "./SearchBar";
 
 function Navbar() {
   return (
-    <div>
+    <div className="nav-bar">
       <div className="nav-div">
         <div className="logo">
-            <img src={websiteLogo} alt="Website Logo" className="website-logo" />
-      </div>
- <SearchBar />
+          <img src={websiteLogo} alt="Website Logo" className="website-logo" />
+        </div>
         <div className="nav-tabs">
           <div>
             <img src="" alt="" />
@@ -37,6 +35,7 @@ function Navbar() {
           </button>
         </div>
       </div>
+      <SearchBar />
     </div>
   );
 }
