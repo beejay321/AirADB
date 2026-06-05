@@ -12,10 +12,7 @@ function Navbar() {
           <img src={websiteLogo} alt="Website Logo" className="website-logo" />
         </div>
         <div className="nav-tabs">
-          <div>
-            <img src="" alt="" />
-            <span>Homes </span>
-          </div>
+          <span>Homes</span>
           <span>Experiences</span>
           <span>Services</span>
         </div>
