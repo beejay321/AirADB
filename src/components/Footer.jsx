@@ -1,7 +1,7 @@
 const Footer = () => {
   const footerSections = [
     {
-      title: "Airbnb Support",
+      title: "Airadb Support",
       links: ["Help Center", "AirCover", "Anti-discrimination", "Disability support"]
     },
     {
