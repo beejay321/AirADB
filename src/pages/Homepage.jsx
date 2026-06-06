@@ -11,7 +11,9 @@ function Homepage() {
     const getListings = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get("http://localhost:5005/listings");
+        const response = await axios.get(
+          "https://airadb-server.onrender.com/listings",
+        );
         console.log(response);
         setProperties(response.data);
         setIsLoading(false);
@@ -26,12 +28,10 @@ function Homepage() {
   if (error) return <div>{error}</div>;
 
   return (
-    <div
-      style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}
-      className="dashboard"
-    >
+    <div className="dashboard">
       <h1>Explore Stays</h1>
       <div
+        className="listings-div"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
