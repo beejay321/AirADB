@@ -28,7 +28,7 @@ body {
   align-items: center;
   padding: 8px 32px;
 }
-  /* background-color: white; */
+/* background-color: white; */
 .nav-tabs {
   display: flex;
   gap: 30px;
@@ -82,7 +82,7 @@ body {
 .nav-icon-btn:hover {
   border-color: var(--airadb-coral);
   color: var(--airadb-coral);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.10);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar {
@@ -122,4 +122,20 @@ body {
 
 .search-button:hover {
   background-color: var(--airadb-turquoise);
+}
+/* Listings */
+.listing-card {
+  width: 200px;
+  height: 280px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 20px 20px 0 0;
+  text-align: start;
+  margin: 10px;
+}
+.listing-img {
+  border-radius: 20px;
+}
+/* Homepage */
+.dashboard {
+  background-color: white;
 }

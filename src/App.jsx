@@ -6,13 +6,13 @@ import Navbar from "./components/Navbar.jsx";
 import "./App.css";
 function App() {
   return (
-
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      minHeight: '100vh' 
-    }}>
-
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <main style={{ flex: 1 }}>
         <Navbar />
         <Routes>
@@ -22,7 +22,7 @@ function App() {
       </main>
 
       <Footer />
-    </div>  
+    </div>
   );
 }
 
