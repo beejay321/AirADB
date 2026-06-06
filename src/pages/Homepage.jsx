@@ -1,5 +1,12 @@
+import ListingsCard from "../components/ListingsCard";
+
 function Homepage() {
-  return <div>This is the Home page</div>;
+  return (
+    <div className="dashboard">
+      This is the Home page
+      <ListingsCard />
+    </div>
+  );
 }
 
 export default Homepage;

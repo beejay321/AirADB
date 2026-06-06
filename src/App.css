@@ -4,7 +4,8 @@ body {
 /* Navbar */
 .nav-bar {
   padding-bottom: 10px;
-  background-color: white;
+  background-color: rgb(252, 252, 252);
+  border-bottom: 1px rgb(229, 228, 228) solid;
 }
 .website-logo {
   height: 60px;
@@ -15,7 +16,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 24px;
-  /* background-color: white; */
 }
 .nav-tabs {
   display: flex;
@@ -47,4 +47,20 @@ body {
   color: rgb(0, 0, 0);
 
   align-items: center;
+}
+/* Listings */
+.listing-card {
+  width: 200px;
+  height: 280px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 20px 20px 0 0;
+  text-align: start;
+  margin: 10px;
+}
+.listing-img {
+  border-radius: 20px;
+}
+/* Homepage */
+.dashboard {
+  background-color: white;
 }
