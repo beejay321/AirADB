@@ -125,17 +125,27 @@ body {
 }
 /* Listings */
 .listing-card {
-  width: 200px;
-  height: 280px;
-  background-color: rgb(237, 237, 237);
+  width: 250px;
+  height: 350px;
+  /* background-color: rgb(237, 237, 237); */
   border-radius: 20px 20px 0 0;
   text-align: start;
   margin: 10px;
 }
 .listing-img {
   border-radius: 20px;
+  width: 250px;
+  height: 200px;
 }
 /* Homepage */
 .dashboard {
   background-color: white;
+  padding: 32px 60px;
+  /* max-width: 1200px; */
+  margin: 0;
+}
+.listings-div {
+  display: "grid";
+  /* grid-template-columns: "repeat(auto-fill, minmax(280px, 1fr))"; */
+  gap: "24px";
 }
