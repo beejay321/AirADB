@@ -3,7 +3,11 @@ import Homepage from "./pages/Homepage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
+import ListingForms from "./pages/ListingForms.jsx";
 import "./App.css";
+
+
+
 function App() {
   return (
     <div
@@ -18,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/host/new" element={<ListingForms />} />
         </Routes>
       </main>
 
