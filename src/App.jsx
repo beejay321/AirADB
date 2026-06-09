@@ -4,6 +4,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer.jsx";
 import Navbar from "./components/Navbar.jsx";
 import "./App.css";
+import DetailPage from "./pages/DetailPage.jsx";
 function App() {
   return (
     <div
@@ -17,6 +18,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/listings/:id" element={<DetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
