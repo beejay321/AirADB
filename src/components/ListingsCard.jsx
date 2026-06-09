@@ -9,10 +9,10 @@ function ListingsCard({ property }) {
           <h6>{property.name}</h6>
           <p>{property.neighbourhood}</p>
           <p>{property.price} per night</p>
-          {/* <div>
-          <span className="heart">❤️</span>
-          </div> */}
         </div>
+        {/* <div>
+          <span className="heart">❤️</span>
+          </div>  */}
       </Link>
     </>
   );
