@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
 import websiteLogo from "../assets/website-logo.png";
@@ -9,7 +9,9 @@ function Navbar() {
     <div className="nav-bar">
       <div className="nav-div">
         <div className="logo">
+          <Link to="/">
           <img src={websiteLogo} alt="Website Logo" className="website-logo" />
+          </Link>
         </div>
         <div className="nav-tabs">
           <span>Homes</span>
@@ -17,10 +19,12 @@ function Navbar() {
           <span>Services</span>
         </div>
         <div className="nav-actions">
-          <button className="nav-add-btn">
-            <span>Add listing</span>
-          </button>
-          <button className="nav-icon-btn ">
+          <Link to="/host/new">
+            <button className="nav-add-btn">
+              <span>Add listing</span>
+            </button>
+          </Link>
+          <button className="nav-icon-btn">
             <span>
               <CiGlobe />
             </span>
@@ -38,3 +42,8 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+
+
+
