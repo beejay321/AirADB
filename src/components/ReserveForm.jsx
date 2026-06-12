@@ -1,13 +1,21 @@
 import { useState } from 'react';
+import Calendar from './Calendar'; // Ensure this path is correct
 
 const ReserveForm = ({ pricePerNight }) => {
-  const [dates, setDates] = useState({ checkIn: "", checkOut: "" });
+  // We now store a range array: [startDate, endDate]
+  const [dateRange, setDateRange] = useState([null, null]);
+  const [startDate, endDate] = dateRange;
   const [guests, setGuests] = useState(1);
 
-  // Simple calculation: Price * number of days
   const calculateTotal = () => {
-    // In a real app, you'd calculate the difference between dates here
-    return pricePerNight * 3 * guests; // Placeholder for demo
+    if (!startDate || !endDate) return 0;
+    
+    // Calculate nights using date-fns or native math
+    const msPerDay = 24 * 60 * 60 * 1000;
+    const diff = Math.round((endDate - startDate) / msPerDay);
+    const nights = diff > 0 ? diff : 0;
+    
+    return pricePerNight * nights * guests;
   };
 
   return (
@@ -19,14 +27,20 @@ const ReserveForm = ({ pricePerNight }) => {
     }}>
       <h3>${pricePerNight} <span style={{ fontWeight: 'normal', fontSize: '16px' }}>/ night</span></h3>
       
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', margin: '20px 0' }}>
-        <input type="date" onChange={(e) => setDates({...dates, checkIn: e.target.value})} style={inputStyle} />
-        <input type="date" onChange={(e) => setDates({...dates, checkOut: e.target.value})} style={inputStyle} />
-      </div>
+      {/* Integrated Calendar Component */}
+      <Calendar 
+        startDate={startDate} 
+        endDate={endDate} 
+        onChange={(update) => setDateRange(update)} 
+      />
       
-      <select onChange={(e) => setGuests(Number(e.target.value))} style={{ ...inputStyle, width: '100%', marginBottom: '20px' }}>
+      <select 
+        onChange={(e) => setGuests(Number(e.target.value))} 
+        style={{ ...inputStyle, width: '100%', marginBottom: '20px', marginTop: '10px' }}
+      >
         <option value="1">1 guest</option>
         <option value="2">2 guests</option>
+        <option value="3">3 guests</option>
       </select>
 
       <button style={{ 
@@ -43,8 +57,13 @@ const ReserveForm = ({ pricePerNight }) => {
         Reserve
       </button>
       
-      <p style={{ textAlign: 'center', marginTop: '15px', color: '#717171' }}>${calculateTotal()} total</p>
       <p style={{ textAlign: 'center', marginTop: '15px', color: '#717171' }}>You won't be charged yet</p>
+      
+      {startDate && endDate && (
+        <p style={{ textAlign: 'center', marginTop: '8px', color: '#111', fontWeight: '600' }}>
+          Total: ${calculateTotal()}
+        </p>
+      )}
     </div>
   );
 };
