@@ -1,16 +1,21 @@
-import React from "react";
+import { Link } from "react-router";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
 import websiteLogo from "../assets/website-logo.png";
 import SearchBar from "./SearchBar";
-import { Link } from "react-router";
 
 function Navbar() {
   return (
     <div className="nav-bar">
       <div className="nav-div">
         <div className="logo">
-          <img src={websiteLogo} alt="Website Logo" className="website-logo" />
+          <Link to="/">
+            <img
+              src={websiteLogo}
+              alt="Website Logo"
+              className="website-logo"
+            />
+          </Link>
         </div>
         <div className="nav-tabs">
           <span>Homes</span>
@@ -23,7 +28,7 @@ function Navbar() {
               <span>Add listing</span>
             </button>
           </Link>
-          <button className="nav-icon-btn ">
+          <button className="nav-icon-btn">
             <span>
               <CiGlobe />
             </span>
