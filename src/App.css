@@ -9,6 +9,7 @@
 
 body {
   color: rgb(93, 93, 93);
+  font-size: 18px;
 }
 /* Navbar */
 .nav-bar {
@@ -151,7 +152,7 @@ body {
 }
 /* Detail page */
 .detail-listing {
-  padding: 15px 60px;
+  margin: 24px 60px;
 }
 .detail-img {
   width: 650px;
@@ -165,6 +166,45 @@ body {
   height: 100%;
   object-fit: contain;
 }
+.detail-section {
+  display: flex;
+  gap: 80px;
+  margin: 18px 0;
+}
 .detail-div {
   width: 550px;
+}
+
+.property-type,
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.detail-host {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+}
+.host-img {
+  border-radius: 50%;
+  height: 50px;
+}
+.reserve-form {
+  height: 200px;
+  background-color: var(--airadb-coral);
+}
+.calendar-div {
+  margin: 24px 0;
+  height: 400px;
+  background-color: var(--airadb-coral);
+}
+.reviews {
+  margin: 24px 0;
+  height: 300px;
+  background-color: var(--airadb-coral);
+}
+.location-map {
+  margin: 24px 0;
+  height: 300px;
+  background-color: var(--airadb-coral);
 }

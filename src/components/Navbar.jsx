@@ -9,8 +9,12 @@ function Navbar() {
     <div className="nav-bar">
       <div className="nav-div">
         <div className="logo">
-          <Link to="/">2cd
-          <img src={websiteLogo} alt="Website Logo" className="website-logo" />
+          <Link to="/">
+            <img
+              src={websiteLogo}
+              alt="Website Logo"
+              className="website-logo"
+            />
           </Link>
         </div>
         <div className="nav-tabs">
@@ -42,8 +46,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
-
-
-
