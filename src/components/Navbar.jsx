@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
 import websiteLogo from "../assets/website-logo.png";
 import SearchBar from "./SearchBar";
+import { Link } from "react-router";
 
 function Navbar() {
   return (
@@ -17,9 +18,11 @@ function Navbar() {
           <span>Services</span>
         </div>
         <div className="nav-actions">
-          <button className="nav-add-btn">
-            <span>Add listing</span>
-          </button>
+          <Link to="/host/new">
+            <button className="nav-add-btn">
+              <span>Add listing</span>
+            </button>
+          </Link>
           <button className="nav-icon-btn ">
             <span>
               <CiGlobe />
