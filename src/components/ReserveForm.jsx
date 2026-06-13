@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Calendar from './Calendar'; // Ensure this path is correct
+import Calendar from './Calendar.jsx'; 
 
 const ReserveForm = ({ pricePerNight }) => {
   // We now store a range array: [startDate, endDate]
