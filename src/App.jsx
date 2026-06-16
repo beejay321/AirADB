@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router";
+import { Routes, Route, useLocation } from "react-router";
 import Homepage from "./pages/Homepage";
 import NotFoundPage from "./pages/NotFoundPage";
 import Footer from "./components/Footer.jsx";
@@ -6,8 +6,11 @@ import Navbar from "./components/Navbar.jsx";
 import ListingForms from "./pages/ListingForms.jsx";
 import "./App.css";
 import DetailPage from "./pages/DetailPage.jsx";
+import LandingPage from "./pages/LandingPage.jsx";
 
 function App() {
+  const { pathname } = useLocation();
+  const isLanding = pathname === "/";
   return (
     <div
       style={{
@@ -17,16 +20,16 @@ function App() {
       }}
     >
       <main style={{ flex: 1 }}>
-        <Navbar />
+        {!isLanding && <Navbar />}
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/listings" element={<Homepage />} />
           <Route path="/listings/:id" element={<DetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/host/new" element={<ListingForms />} />
         </Routes>
       </main>
-
-      <Footer />
+      {!isLanding && <Footer />}
     </div>
   );
 }
