@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ListingsCard from "../components/ListingsCard";
-import axios from "axios";
+import api from "../lib/api";
 
 function Homepage() {
   const [properties, setProperties] = useState([]);
@@ -11,15 +11,13 @@ function Homepage() {
     const getListings = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          "https://airadb-server.onrender.com/listings",
-        );
-        
-        
+        const response = await api.get("/listings");
+
         const validProperties = response.data.filter(
-          (prop) => prop.picture_url && prop.picture_url.trim() !== "" && prop.price
+          (prop) =>
+            prop.picture_url && prop.picture_url.trim() !== "" && prop.price,
         );
-        
+
         setProperties(validProperties);
         setIsLoading(false);
       } catch (error) {

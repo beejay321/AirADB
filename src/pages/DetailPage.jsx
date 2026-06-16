@@ -33,7 +33,7 @@ function DetailPage() {
     <>
       <div className="detail-listing">
         <Link to="/" className="back-home-link" aria-label="Back to listings">
-          ←
+          <p>← Back to listings</p>
         </Link>
 
         <h3>{currentListing.name}</h3>

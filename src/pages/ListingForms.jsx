@@ -1,22 +1,20 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../lib/api";
 import { useNavigate } from "react-router";
 
 function ListingForms() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  
-  
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     price: "",
     property_type: "",
     accommodates: 1,
-    amenities: [] 
+    amenities: [],
   });
 
- 
   const handleCheckboxChange = (amenity) => {
     setFormData((prev) => {
       const amenities = prev.amenities.includes(amenity)
@@ -30,7 +28,7 @@ function ListingForms() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.post("https://airadb-server.onrender.com/listings", formData);
+      await api.post("/listings", formData);
       alert("Listing created successfully!");
       navigate("/");
     } catch (error) {
@@ -43,22 +41,22 @@ function ListingForms() {
   return (
     <form className="listing-form" onSubmit={handleSubmit}>
       <h2>Host your space</h2>
-      
+
       <div className="amenities-container" style={{ margin: "20px 0" }}>
         <p>Select Amenities:</p>
         <label>
-          <input 
-            type="checkbox" 
-            checked={formData.amenities.includes("WiFi")} 
-            onChange={() => handleCheckboxChange("WiFi")} 
+          <input
+            type="checkbox"
+            checked={formData.amenities.includes("WiFi")}
+            onChange={() => handleCheckboxChange("WiFi")}
           />
           WiFi
         </label>
         <label style={{ marginLeft: "15px" }}>
-          <input 
-            type="checkbox" 
-            checked={formData.amenities.includes("Kitchen")} 
-            onChange={() => handleCheckboxChange("Kitchen")} 
+          <input
+            type="checkbox"
+            checked={formData.amenities.includes("Kitchen")}
+            onChange={() => handleCheckboxChange("Kitchen")}
           />
           Kitchen
         </label>
