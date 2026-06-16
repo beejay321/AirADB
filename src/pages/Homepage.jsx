@@ -7,20 +7,20 @@ function Homepage() {
   const [isLoading, setIsLoading] = useState(true); // New: Track loading
   const [error, setError] = useState(null); // New: Track errors
 
-  const getListings = async () => {
-    try {
-      setIsLoading(true);
-      const response = await api.get("/listings");
-      // console.log(response);
-      setProperties(response.data);
-      setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-      setError(error?.message || "Failed to load listings");
-      setIsLoading(false);
-    }
-  };
   useEffect(() => {
+    const getListings = async () => {
+      try {
+        setIsLoading(true);
+        const response = await api.get("/listings");
+        setProperties(response.data);
+      } catch (error) {
+        console.log(error);
+        setError(error?.message || "Failed to load listings");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     getListings();
   }, []);
 
