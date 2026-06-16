@@ -1,26 +1,33 @@
 import { useEffect, useState } from "react";
 import ListingsCard from "../components/ListingsCard";
-import api from "../lib/api";
+import axios from "axios";
 
 function Homepage() {
   const [properties, setProperties] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // New: Track loading
-  const [error, setError] = useState(null); // New: Track errors
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getListings = async () => {
       try {
         setIsLoading(true);
-        const response = await api.get("/listings");
-        setProperties(response.data);
+        const response = await axios.get(
+          "https://airadb-server.onrender.com/listings",
+        );
+        
+        
+        const validProperties = response.data.filter(
+          (prop) => prop.picture_url && prop.picture_url.trim() !== "" && prop.price
+        );
+        
+        setProperties(validProperties);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
         setError(error?.message || "Failed to load listings");
-      } finally {
         setIsLoading(false);
       }
     };
-
     getListings();
   }, []);
 
