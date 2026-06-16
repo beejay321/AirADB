@@ -1,51 +1,74 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router";
-import api from "../lib/api";
 
-const CreateListing = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    location: "",
-    pricePerNight: "",
-    image: "",
-    bedrooms: ""
-  });
-  
+function ListingForms() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+    price: "",
+    property_type: "",
+    accommodates: 1,
+    amenities: [] 
+  });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+ 
+  const handleCheckboxChange = (amenity) => {
+    setFormData((prev) => {
+      const amenities = prev.amenities.includes(amenity)
+        ? prev.amenities.filter((a) => a !== amenity)
+        : [...prev.amenities, amenity];
+      return { ...prev, amenities };
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
-      await api.post("/properties", formData);
+      await axios.post("https://airadb-server.onrender.com/listings", formData);
       alert("Listing created successfully!");
-      navigate("/"); // Redirect home after creation
+      navigate("/");
     } catch (error) {
-      console.error("Error creating listing:", error);
+      console.error("Error saving listing:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div style={{ maxWidth: "600px", margin: "40px auto", padding: "20px" }}>
-      <h1>Host your home</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-        <input name="title" placeholder="Title" onChange={handleChange} required style={inputStyle} />
-        <input name="location" placeholder="Location (e.g., Lisbon)" onChange={handleChange} required style={inputStyle} />
-        <input name="pricePerNight" type="number" placeholder="Price per night" onChange={handleChange} required style={inputStyle} />
-        <input name="image" placeholder="Image URL" onChange={handleChange} required style={inputStyle} />
-        <textarea name="description" placeholder="Description" onChange={handleChange} required style={inputStyle} />
-        <button type="submit" style={buttonStyle}>Create Listing</button>
-      </form>
-    </div>
+    <form className="listing-form" onSubmit={handleSubmit}>
+      <h2>Host your space</h2>
+      
+      <div className="amenities-container" style={{ margin: "20px 0" }}>
+        <p>Select Amenities:</p>
+        <label>
+          <input 
+            type="checkbox" 
+            checked={formData.amenities.includes("WiFi")} 
+            onChange={() => handleCheckboxChange("WiFi")} 
+          />
+          WiFi
+        </label>
+        <label style={{ marginLeft: "15px" }}>
+          <input 
+            type="checkbox" 
+            checked={formData.amenities.includes("Kitchen")} 
+            onChange={() => handleCheckboxChange("Kitchen")} 
+          />
+          Kitchen
+        </label>
+      </div>
+
+      <button type="submit" className="search-button" disabled={isLoading}>
+        {isLoading ? "Saving..." : "Create Listing"}
+      </button>
+    </form>
   );
-};
+}
 
-// Simple reusable styles
-const inputStyle = { padding: "12px", borderRadius: "8px", border: "1px solid #ccc" };
-const buttonStyle = { padding: "15px", backgroundColor: "#FF385C", color: "white", border: "none", borderRadius: "8px", cursor: "pointer" };
-
-export default CreateListing;
+export default ListingForms;

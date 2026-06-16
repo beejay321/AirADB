@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Calendar from "./Calendar"; // Ensure this path is correct
+import Calendar from "./Calendar"; 
 
 const ReserveForm = ({ pricePerNight }) => {
-  // We now store a range array: [startDate, endDate]
+  
   const [dateRange, setDateRange] = useState([null, null]);
   const [startDate, endDate] = dateRange;
   const [guests, setGuests] = useState(1);
@@ -10,7 +10,7 @@ const ReserveForm = ({ pricePerNight }) => {
   const calculateTotal = () => {
     if (!startDate || !endDate) return 0;
 
-    // Calculate nights using date-fns or native math
+    
     const msPerDay = 24 * 60 * 60 * 1000;
     const diff = Math.round((endDate - startDate) / msPerDay);
     const nights = diff > 0 ? diff : 0;
