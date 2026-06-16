@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
-import LocationMap from "../components/locationMap";
+import LocationMap from "../components/LocationMap";
 import ReserveForm from "../components/ReserveForm";
 import Reviews from "../components/Reviews";
 import Calendar from "../components/Calendar";
@@ -10,21 +10,21 @@ function DetailPage() {
   const [currentListing, setCurrentListing] = useState(null);
 
   let params = useParams();
-
-  const getCurrentListing = async () => {
-    try {
-      // setIsLoading(true);
-      const response = await api.get(`listings/${params.id}`);
-      // console.log(response);
-      setCurrentListing(response.data);
-      // setIsLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
+    const getCurrentListing = async () => {
+      try {
+        // setIsLoading(true);
+        const response = await api.get(`listings/${params.id}`);
+        // console.log(response);
+        setCurrentListing(response.data);
+        // setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
     getCurrentListing();
-  }, []);
+  }, [params.id]);
 
   if (!currentListing) {
     return <p>Loading listing...</p>;
@@ -32,8 +32,8 @@ function DetailPage() {
   return (
     <>
       <div className="detail-listing">
-        <Link to="/" className="back-home-link">
-          Back to homes
+        <Link to="/listings" className="back-home-link">
+          Back to listings
         </Link>
 
         <h3>{currentListing.name}</h3>
@@ -82,7 +82,7 @@ function DetailPage() {
         </section>
         <hr />
         <section className="location-map">
-         <LocationMap currentListing={currentListing} />
+          <LocationMap currentListing={currentListing} />
         </section>
       </div>
     </>
