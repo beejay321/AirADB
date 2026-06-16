@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
-import LocationMap from "../components/locationMap";
+// import LocationMap from "../components/locationMap";
 import ReserveForm from "../components/ReserveForm";
 import Reviews from "../components/Reviews";
 import Calendar from "../components/Calendar";
@@ -82,7 +82,7 @@ function DetailPage() {
         </section>
         <hr />
         <section className="location-map">
-          <LocationMap currentListing={currentListing} />
+          {/* <LocationMap currentListing={currentListing} /> */}
         </section>
       </div>
     </>
