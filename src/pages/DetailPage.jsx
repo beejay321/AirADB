@@ -1,12 +1,15 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
 import LocationMap from "../components/locationMap";
+import ReserveForm from "../components/ReserveForm";
+import Reviews from "../components/Reviews";
+import Calendar from "../components/Calendar";
 
 function DetailPage() {
-  const [currentListing, setCurrentListing] = useState([]);
+  const [currentListing, setCurrentListing] = useState(null);
+
   let params = useParams();
-  params.id;
 
   const getCurrentListing = async () => {
     try {
@@ -22,9 +25,17 @@ function DetailPage() {
   useEffect(() => {
     getCurrentListing();
   }, []);
+
+  if (!currentListing) {
+    return <p>Loading listing...</p>;
+  }
   return (
     <>
       <div className="detail-listing">
+        <Link to="/" className="back-home-link">
+          Back to homes
+        </Link>
+
         <h3>{currentListing.name}</h3>
         <div className="detail-img">
           <img className="" src={currentListing.picture_url} alt="" />
@@ -49,7 +60,7 @@ function DetailPage() {
               />
               <div>
                 <p>Hosted by {currentListing.host_name}</p>
-                {!currentListing.host_is_superhost && <span>Superhost · </span>}
+                {currentListing.host_is_superhost && <span>Superhost · </span>}
                 <span>host since {currentListing.host_since}</span>
               </div>
             </div>
@@ -57,16 +68,16 @@ function DetailPage() {
               <p>{currentListing.description}</p>
             </div>
             <div className="calendar-div">
-              <p>This is the Calendar component</p>
+              <Calendar />
             </div>
           </div>
           <div className="reserve-form">
-            <p>This is the reserve form component</p>
+            <ReserveForm pricePerNight={currentListing.price} />
           </div>
         </section>
         <hr />
         <section className="reviews">
-          <div>This is the reviews component</div>
+          <Reviews />
         </section>
         <hr />
         <section className="location-map">
