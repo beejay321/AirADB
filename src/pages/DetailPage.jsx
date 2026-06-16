@@ -32,8 +32,8 @@ function DetailPage() {
   return (
     <>
       <div className="detail-listing">
-        <Link to="/listings" className="back-home-link">
-          Back to listings
+        <Link to="/" className="back-home-link" aria-label="Back to listings">
+          ←
         </Link>
 
         <h3>{currentListing.name}</h3>
@@ -67,9 +67,6 @@ function DetailPage() {
             </div>
             <div>
               <p>{currentListing.description}</p>
-            </div>
-            <div className="calendar-div">
-              <Calendar />
             </div>
           </div>
           <div className="reserve-form">
