@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../App";
+import { useNavigate } from "react-router";
+import api from "../lib/api";
 
 const CreateListing = () => {
   const [formData, setFormData] = useState({

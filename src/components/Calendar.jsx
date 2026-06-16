@@ -1,10 +1,14 @@
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Calendar = ({ startDate, endDate, onChange }) => {
   return (
-    <div style={{ marginBottom: '20px' }}>
-      <label style={{ display: 'block', marginBottom: '8px', fontWeight: 'bold' }}>Dates</label>
+    <div style={{ marginBottom: "20px" }}>
+      <label
+        style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}
+      >
+        Dates
+      </label>
       <DatePicker
         selected={startDate}
         onChange={onChange}
