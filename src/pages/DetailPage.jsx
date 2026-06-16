@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
+import LocationMap from "../components/locationMap";
 
 function DetailPage() {
   const [currentListing, setCurrentListing] = useState([]);
@@ -35,10 +36,10 @@ function DetailPage() {
                 {currentListing.property_type} in{" "}
                 {currentListing.neighbourhood}{" "}
               </p>
-              <span>{currentListing.accommodates} guests · </span>
-              <span>{currentListing.bedrooms} bedrooms · </span>
-              <span>{currentListing.beds} beds · </span>
-              <span>{currentListing.bathroom_text}bath </span>̇
+              <span>{currentListing.accommodates} guests</span>
+              <span>{currentListing.bedrooms} bedrooms</span>
+              <span>{currentListing.beds} beds </span>
+              <span>{currentListing.bathroom_text}bath</span>
             </div>
             <div className="detail-host">
               <img
@@ -69,7 +70,7 @@ function DetailPage() {
         </section>
         <hr />
         <section className="location-map">
-          <div>This is the map component</div>
+          <LocationMap currentListing={currentListing} />
         </section>
       </div>
     </>
