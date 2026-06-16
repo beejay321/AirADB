@@ -1,6 +1,7 @@
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import api from "../lib/api";
+import ReserveForm from "../components/ReserveForm";
 
 function DetailPage() {
   const [currentListing, setCurrentListing] = useState(null);
@@ -67,9 +68,17 @@ function DetailPage() {
   useEffect(() => {
     getCurrentListing();
   }, []);
+
+  if (!currentListing) {
+  return <p>Loading listing...</p>;
+}
   return (
     <>
       <div className="detail-listing">
+        <Link to="/" className="back-home-link">
+          Back to homes
+        </Link>
+
         <h3>{currentListing.name}</h3>
         <div className="detail-img">
           <img className="" src={currentListing.picture_url} alt="" />
@@ -106,7 +115,7 @@ function DetailPage() {
             </div>
           </div>
           <div className="reserve-form">
-            <p>This is the reserve form component</p>
+          <ReserveForm pricePerNight={currentListing.price} />
           </div>
         </section>
         <hr />
