@@ -18,9 +18,15 @@ function Navbar() {
           </Link>
         </div>
         <div className="nav-tabs">
-          <span>Homes</span>
-          <span>Experiences</span>
-          <span>Services</span>
+          <Link to="/listings">
+            <span>Homes</span>
+          </Link>
+          <Link to="/listings">
+            <span>Experiences</span>
+          </Link>
+          <Link to="/listings">
+            <span>Services</span>
+          </Link>
         </div>
         <div className="nav-actions">
           <Link to="/host/new">
