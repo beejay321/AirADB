@@ -24,8 +24,9 @@ function Homepage() {
     getListings();
   }, []);
 
-  if (isLoading) return <div>Loading your stays...</div>;
-  if (error) return <div>{error}</div>;
+  if (isLoading)
+    return <div className="state-message">Loading your stays…</div>;
+  if (error) return <div className="state-message">{error}</div>;
 
   return (
     <div className="dashboard">
