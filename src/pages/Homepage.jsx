@@ -24,20 +24,14 @@ function Homepage() {
     getListings();
   }, []);
 
-  if (isLoading) return <div>Loading your stays...</div>;
-  if (error) return <div>{error}</div>;
+  if (isLoading)
+    return <div className="state-message">Loading your stays…</div>;
+  if (error) return <div className="state-message">{error}</div>;
 
   return (
     <div className="dashboard">
       <h1>Explore Stays</h1>
-      <div
-        className="listings-div"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "24px",
-        }}
-      >
+      <div className="listings-div">
         {properties.map((property) => (
           <ListingsCard key={property.id} property={property} />
         ))}
