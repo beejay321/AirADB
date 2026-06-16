@@ -31,14 +31,7 @@ function Homepage() {
   return (
     <div className="dashboard">
       <h1>Explore Stays</h1>
-      <div
-        className="listings-div"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: "24px",
-        }}
-      >
+      <div className="listings-div">
         {properties.map((property) => (
           <ListingsCard key={property.id} property={property} />
         ))}
