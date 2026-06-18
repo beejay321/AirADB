@@ -11,14 +11,19 @@ function Homepage() {
     const getListings = async () => {
       try {
         setIsLoading(true);
+
         const response = await api.get("/listings");
 
-        const validProperties = response.data.filter(
-          (prop) =>
-            prop.picture_url && prop.picture_url.trim() !== "" && prop.price,
-        );
+        console.log("RESPONSE DATA:", response.data);
 
-        setProperties(validProperties);
+        const listingsData = Array.isArray(response.data)
+          ? response.data
+          : response.data.listings || [];
+
+        console.log("LISTINGS DATA:", listingsData);
+
+        setProperties(listingsData);
+
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -26,16 +31,26 @@ function Homepage() {
         setIsLoading(false);
       }
     };
+
     getListings();
   }, []);
 
-  if (isLoading)
+  if (isLoading) {
     return <div className="state-message">Loading your stays…</div>;
-  if (error) return <div className="state-message">{error}</div>;
+  }
+
+  if (error) {
+    return <div className="state-message">{error}</div>;
+  }
 
   return (
     <div className="dashboard">
       <h1>Explore Stays</h1>
+
+      {properties.length === 0 && (
+        <p className="state-message">No listings found.</p>
+      )}
+
       <div className="listings-div">
         {properties.map((property) => (
           <ListingsCard key={property.id} property={property} />
