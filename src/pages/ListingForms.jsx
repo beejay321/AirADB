@@ -219,7 +219,7 @@ function ListingForms() {
             </label>
           </div>
           <UploadImage
-            label="Listing photo"
+            label="Host photo"
             value={formData.host_picture_url}
             onChange={(url) =>
               setFormData((prev) => ({ ...prev, host_picture_url: url }))

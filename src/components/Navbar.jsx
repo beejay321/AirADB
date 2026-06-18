@@ -1,10 +1,12 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CiGlobe } from "react-icons/ci";
 import websiteLogo from "../assets/website-logo.png";
 import SearchBar from "./SearchBar";
 
 function Navbar() {
+  const { pathname } = useLocation();
+  const isListings = pathname === "/listings";
   return (
     <div className="nav-bar">
       <div className="nav-div">
@@ -46,7 +48,7 @@ function Navbar() {
           </button>
         </div>
       </div>
-      <SearchBar />
+      {isListings && <SearchBar />}
     </div>
   );
 }
