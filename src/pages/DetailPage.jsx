@@ -4,7 +4,7 @@ import api from "../lib/api";
 import LocationMap from "../components/LocationMap";
 import ReserveForm from "../components/ReserveForm";
 import Reviews from "../components/Reviews";
-import Calendar from "../components/Calendar";
+import ListingActions from "../components/ListingActions";
 
 function DetailPage() {
   const [currentListing, setCurrentListing] = useState(null);
@@ -32,9 +32,16 @@ function DetailPage() {
   return (
     <>
       <div className="detail-listing">
-        <Link to="/" className="back-home-link" aria-label="Back to listings">
-          <p>← Back to listings</p>
-        </Link>
+        <div className="detail-top-bar">
+          <Link
+            to="/listings"
+            className="back-home-link"
+            aria-label="Back to listings"
+          >
+            <p>← Back to listings</p>
+          </Link>
+          <ListingActions listingId={params.id} />
+        </div>
 
         <h3>{currentListing.name}</h3>
         <div className="detail-img">
@@ -51,7 +58,7 @@ function DetailPage() {
               <span>{currentListing.accommodates} guests</span>
               <span>{currentListing.bedrooms} bedrooms</span>
               <span>{currentListing.beds} beds </span>
-              <span>{currentListing.bathroom_text}bath</span>
+              <span>{currentListing.bathroom_text} bath</span>
             </div>
             <div className="detail-host">
               <img
