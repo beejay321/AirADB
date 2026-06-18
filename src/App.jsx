@@ -30,7 +30,7 @@ function App() {
           <Route path="/host/edit/:id" element={<ListingForms />} />
         </Routes>
       </main>
-      {!isLanding && <Footer />}
+      <Footer />
     </div>
   );
 }
