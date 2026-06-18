@@ -27,6 +27,7 @@ function App() {
           <Route path="/listings/:id" element={<DetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/host/new" element={<ListingForms />} />
+          <Route path="/host/edit/:id" element={<ListingForms />} />
         </Routes>
       </main>
       {!isLanding && <Footer />}
