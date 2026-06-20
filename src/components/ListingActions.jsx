@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import api from "../lib/api";
+import { useListingsContext } from "../context/Listings.context";
 
 function ListingActions({ listingId }) {
   const [isDeleting, setIsDeleting] = useState(false);
   const navigate = useNavigate();
+  const { deleteListing } = useListingsContext();
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this listing?"))
       return;
     setIsDeleting(true);
     try {
-      await api.delete(`listings/${listingId}`);
+      await deleteListing(listingId);
       navigate("/listings");
     } catch (error) {
       console.error("Error deleting listing:", error);
