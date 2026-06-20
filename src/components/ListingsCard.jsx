@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router";
 import { FaHeart } from "react-icons/fa";
 
-function ListingsCard({ property }) {
+function ListingsCard({ property, onImageLoad }) {
   const [isFavorited, setIsFavorited] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
 
   function handleFavoriteClick(e) {
     e.preventDefault();
@@ -12,10 +13,16 @@ function ListingsCard({ property }) {
 
   return (
     <div className="listing-card-wrapper">
-      <Link to={`/listings/${property.id}`}>
+      {!imgLoaded && <div className="card-skeleton" />}
+      <Link to={`/listings/${property.id}`} style={{ display: imgLoaded ? "block" : "none" }}>
         <div className="listing-card">
           <div className="listing-img-wrapper">
-            <img src={property.picture_url} alt="" className="listing-img" />
+            <img
+              src={property.picture_url}
+              alt=""
+              className="listing-img"
+              onLoad={() => { setImgLoaded(true); onImageLoad?.(); }}
+            />
             <button
               className={`favorite-btn ${isFavorited ? " favorited" : ""}`}
               onClick={handleFavoriteClick}

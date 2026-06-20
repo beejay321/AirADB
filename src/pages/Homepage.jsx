@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ListingsCard from "../components/ListingsCard";
 import { useListingsContext } from "../context/Listings.context";
 
