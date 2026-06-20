@@ -10,12 +10,13 @@ const ReserveForm = ({ pricePerNight }) => {
   const calculateTotal = () => {
     if (!startDate || !endDate) return 0;
 
-    
-    const msPerDay = 24 * 60 * 60 * 1000;
-    const diff = Math.round((endDate - startDate) / msPerDay);
-    const nights = diff > 0 ? diff : 0;
+    const price = parseFloat(String(pricePerNight).replace(/[^0-9.]/g, ""));
+    if (isNaN(price)) return 0;
 
-    return pricePerNight * nights * guests;
+    const msPerDay = 24 * 60 * 60 * 1000;
+    const nights = Math.round((endDate - startDate) / msPerDay);
+
+    return (price * (nights > 0 ? nights : 0) * guests).toFixed(2);
   };
 
   return (

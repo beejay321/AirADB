@@ -1,46 +1,22 @@
 import { useEffect, useState } from "react";
 import ListingsCard from "../components/ListingsCard";
-import api from "../lib/api";
+import { useListingsContext } from "../context/Listings.context";
 
 function Homepage() {
-  const [properties, setProperties] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getListings = async () => {
-      try {
-        setIsLoading(true);
-        const response = await api.get("/listings");
-
-        const validProperties = response.data.filter(
-          (prop) =>
-            prop.picture_url && prop.picture_url.trim() !== "" && prop.price,
-        );
-
-        setProperties(validProperties);
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-        setError(error?.message || "Failed to load listings");
-        setIsLoading(false);
-      }
-    };
-    getListings();
-  }, []);
-
-  if (isLoading)
-    return <div className="state-message">Loading your stays…</div>;
-  if (error) return <div className="state-message">{error}</div>;
+  const { listings } = useListingsContext();
 
   return (
     <div className="dashboard">
       <h1>Explore Stays</h1>
-      <div className="listings-div">
-        {properties.map((property) => (
-          <ListingsCard key={property.id} property={property} />
-        ))}
-      </div>
+      {listings ? (
+        <div className="listings-div">
+          {listings.map((listing) => (
+            <ListingsCard key={listing.id} property={listing} />
+          ))}
+        </div>
+      ) : (
+        <div className="state-message">Loading your stays…</div>
+      )}
     </div>
   );
 }

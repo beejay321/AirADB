@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import api from "../lib/api";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "../components/UploadImage";
+import { useListingsContext } from "../context/Listings.context";
 
 function ListingForms() {
   const navigate = useNavigate();
   const { id } = useParams();
   const isEditing = Boolean(id);
+  const { updateListing, createListing } = useListingsContext();
 
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -48,7 +50,6 @@ function ListingForms() {
           host_since: d.host_since || "",
           host_is_superhost: d.host_is_superhost || false,
         });
-        // console.log("this is formdata after fetchimg listing", formData);
       } catch (error) {
         console.error("Error fetching listing:", error);
       }
@@ -69,11 +70,11 @@ function ListingForms() {
     setIsLoading(true);
     try {
       if (isEditing) {
-        await api.patch(`/listings/${id}`, formData);
+        await updateListing(id, formData);
         navigate(`/listings/${id}`);
       } else {
-        await api.post("/listings", formData);
-        navigate("/listings");
+        const newListing = await createListing(formData);
+        navigate(`/listings/${newListing.id}`);
       }
     } catch (error) {
       console.error("Error saving listing:", error);
