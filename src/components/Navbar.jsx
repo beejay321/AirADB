@@ -21,7 +21,7 @@ function Navbar() {
         </div>
         <div className="nav-tabs">
           <Link to="/listings">
-            <span>Homes</span>
+            <span className={isListings ? "active" : ""}>Homes</span>
           </Link>
           <Link to="/listings">
             <span>Experiences</span>
