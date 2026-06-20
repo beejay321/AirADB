@@ -115,7 +115,8 @@ p {
   color: var(--dark);
 }
 
-.nav-tabs span:hover::after {
+.nav-tabs span:hover::after,
+.nav-tabs span.active::after {
   transform: scaleX(1);
 }
 
@@ -260,8 +261,12 @@ p {
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 .listing-img-wrapper {
