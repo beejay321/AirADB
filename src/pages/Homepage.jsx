@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import ListingsCard from "../components/ListingsCard";
-import api from "../lib/api";
 import { useListingsContext } from "../context/Listings.context";
 
 function Homepage() {
